@@ -58,12 +58,17 @@ form {
 }
 .form-box input[type="checkbox"] {
   font-size: 1rem;
+  vertical-align: middle;
+  position: relative;
+}
+.gender {
+    display: flex;
+    flex-direction: column;
 }
 .form-box button {
   font-size: 1rem;
   border: none;
   padding: 0.25rem 2rem;
-  /* margin-right: 1rem; */
   color: white;
   background-color: rgb(138, 136, 136);
   cursor: pointer;
@@ -93,6 +98,11 @@ form {
     font-family: 'Karla', sans-serif;
   }
 
+  li {
+      overflow: hidden;
+      float: left;
+      list-style: none;
+  }
   @media screen and (max-width: 600px) {
       .form-box {
           text-align: unset;

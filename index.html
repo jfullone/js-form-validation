@@ -17,7 +17,7 @@
     <div class="form-container">
       <form id="form-user" action="#" method="post">
         <div class="form-box error" data-errormsg="">
-          <label for="input-first">First</label>
+          <label for="input-first">First Name</label>
           <input
             type="text"
             id="input-first"
@@ -57,14 +57,33 @@
           </select>
         </div>
         <div class="form-box" data-errormsg="">
-          <label for="input-alive">Alive?</label>
-          <input
-            type="checkbox"
-            id="input-alive"
-            value="yes"
-            tabindex="5"
-            checked
-          />
+          <label for="gender">Gender</label>
+          <div class="gender">
+            <li><label for="genderMale">Male</label>
+            <input
+              type="checkbox"
+              id="gender"
+              value="yes"
+              tabindex="5"
+              unchecked
+            /></li>
+            <li><label for="genderNon">Non-Binary</label>
+            <input
+              type="checkbox"
+              id="genderNon"
+              value="yes"
+              tabindex="5"
+              unchecked
+            /></li>
+            <li><label for="genderFem">Female</label>
+            <input
+              type="checkbox"
+              id="genderFem"
+              value="yes"
+              tabindex="5"
+              unchecked
+            /></li>
+          </div>
         </div>
         <div class="form-box">
           <button id="button-cancel">Cancel</button>

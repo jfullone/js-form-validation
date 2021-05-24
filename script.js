@@ -39,13 +39,13 @@ const validate = function(ev){
     //let valid = true;
     let failures = [];
     //checkbox (or radio buttons grouped by name)
-    let chk = document.getElementById('input-alive');
+    let chk = document.getElementById('gender');
     // .checked .value
     if(!chk.checked){
         //valid = false;
         //chk.parentElement.classList.add('error');
         //chk.parentElement.setAttribute('data-errormsg', 'Must be alive to submit.');
-        failures.push({input: 'input-alive', msg: 'Must be alive to submit.'})
+        failures.push({input: 'gender', msg: 'Required'})
     }
 
     //select
