@@ -1,73 +1,78 @@
-function formValidate() {
-    const username = document.getElementById("uname");
-    const email = document.getElementById("email");
-    const password = document.getElementById("password");
-    const confirmpassword = document.getElementById("confirm-password");
-    const phonenumber = document.getElementById("phone-number");
-    const numberpattern = /^[0][0-9]{9}$/;
-    const emailpattern = /^([a-z0-9\.-]+)@([a-z0-9-]+).([a-z]{2,20})$/;
-    let validform = 1;
-
-    if (username.value.trim()=="") {
-        document.getElementById("uname_lbl").innerHTML = "Required";
-        username.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    if (email.value.trim()== "") {
-        document.getElementById("email_lbl").innerHTML = "Required";
-        email.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    else if (!(emailpattern.test(email.value))) {
-        document.getElementById("email_lbl").innerHTML = "Invalid";
-        email.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    if (phonenumber.value.trim()== "") {
-        document.getElementById("phone-number_lbl").innerHTML = "Required";
-        phonenumber.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    else if (!(numberpattern.test(phonenumber.value))) {
-        document.getElementById("phone-number_lbl").innerHTML = "Invalid";
-        phonenumber.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    if (password.value.trim()== "") {
-        document.getElementById("password_lbl").innerHTML = "Required";
-        password.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    else if (password.value.trim().length<8) {
-        document.getElementById("password_lbl").innerHTML = "Must contain 8 characters";
-        password.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    if (confirmpassword.value.trim()== "") {
-        document.getElementById("confirm-password_lbl").innerHTML = "Required";
-        confirmpassword.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    else if (password.value.trim() != confirmpassword.value.trim()) {
-        document.getElementById("confirm-password_lbl").innerHTML = "Passwords do not match";
-        confirmpassword.style.border = "2px solid red";
-        validform = 0;
-    }
-
-    if (validform == 1) {
-        return true;
-    }
-    
-    else {
-        return false;
-    }
-    
+const init = function(){
+    document.getElementById('button-cancel').addEventListener('click', reset);
+    document.getElementById('button-send').addEventListener('click', send);
 }
+
+const reset = function(ev){
+    //HTML will automatically put the form back to its initial state
+    //unless we do 
+    ev.preventDefault();
+    // programmatically we can reset it 
+    document.getElementById('form-user').reset();
+    //if you want to do anything else...
+}
+
+const send = function(ev){
+    ev.preventDefault(); 
+    ev.stopPropagation();
+    //or the click will travel to the form and the form will submit
+    let fails = validate();
+    //IF we wanted to do some async things then use a Promise with .then and .catch
+    if(fails.length === 0){
+        //good to go
+        document.getElementById('form-user').submit();
+    }else{
+        //there are some errors to display
+        //bad user
+        //let err = document.querySelector('.error');
+        //let input = err.querySelector('input');
+        //err.setAttribute('data-errormsg', ` ... Missing ${input.placeholder}`);
+        fails.forEach(function(obj){
+            let field = document.getElementById(obj.input);
+            field.parentElement.classList.add('error');
+            field.parentElement.setAttribute('data-errormsg', obj.msg);
+        })
+    }
+}
+
+const validate = function(ev){
+    //let valid = true;
+    let failures = [];
+    //checkbox (or radio buttons grouped by name)
+    let chk = document.getElementById('input-alive');
+    // .checked .value
+    if(!chk.checked){
+        //valid = false;
+        //chk.parentElement.classList.add('error');
+        //chk.parentElement.setAttribute('data-errormsg', 'Must be alive to submit.');
+        failures.push({input: 'input-alive', msg: 'Must be alive to submit.'})
+    }
+
+    //select
+    let select = document.getElementById('input-age');
+    // .selectedIndex  .options  .length   .selectedValue  .value
+    if( select.selectedIndex === 0 ){
+        failures.push({input:'input-age', msg:'Too young'})
+    }
+
+    //inputs for text, email, tel, color, number...
+    let first = document.getElementById('input-first');
+    let password = document.getElementById('input-password');
+    let email = document.getElementById('input-email');
+    //.value, .defaultValue, length of value
+    if( first.value === ""){
+        failures.push({input:'input-first', msg:'Required Field'})
+    } 
+    if( password.value === "" || password.value.length < 8){
+        failures.push({input:'input-password', msg:'Must be at least 8 characters'})
+    } 
+    if( email.value === ""){
+        failures.push({input:'input-email', msg:'Required Field'})
+    }
+    
+    //return a boolean || an object with details about the failures
+    return failures;
+}
+
+
+document.addEventListener('DOMContentLoaded', init);

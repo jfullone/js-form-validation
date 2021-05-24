@@ -4,26 +4,73 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap"
+      rel="stylesheet"
+    />
     <title>JavaScript Form Validation</title>
   </head>
   <body>
-    <div class="form-box">
-        <h1>Welcome!</h1>
-        <form onsubmit="return formValidate()" action="output.html">
-            <label for="uname" class="lbl">Username</label><br>
-            <input type="text" id="uname" name="name"><br>
-            <label for="email" class="lbl">Email</label><br>
-            <input type="text" name="email" id="email"><br>
-            <label for="phone-number" class="lbl">Phone Number</label><br>
-            <input type="number" name="phone-number" id="phone-number"><br>
-            <label for="password" class="lbl">Password</label><br>
-            <input type="password" name="password" id="password"><br>
-            <label for="confirm-password" class="lbl">Confirm Password</label><br>
-            <input type="password" name="cofirm-password" id="confirm-password"><br>
-            <button type="submit" class="btn">Submit</button>
-            <button type="reset" class="btn">Reset</button>
-        </form>
+    <h1>JavaScript and HTML Forms</h1>
+    <div class="form-container">
+      <form id="form-user" action="#" method="post">
+        <div class="form-box error" data-errormsg="">
+          <label for="input-first">First</label>
+          <input
+            type="text"
+            id="input-first"
+            autofocus
+            placeholder="First Name"
+            tabindex="1"
+          />
+        </div>
+        <div class="form-box" data-errormsg="">
+          <label for="input-password">Password</label>
+          <input
+            type="password"
+            id="input-password"
+            required
+            placeholder="Password"
+            tabindex="2"
+          />
+        </div>
+        <div class="form-box" data-errormsg="">
+          <label for="input-email">E-mail</label>
+          <input
+            type="email"
+            id="input-email"
+            required
+            placeholder="E-mail Address"
+            tabindex="3"
+          />
+        </div>
+        <div class="form-box" data-errormsg="">
+          <label for="input-age">Age</label>
+          <select id="input-age" tabindex="4">
+            <option value="0">Under 20</option>
+            <option value="1">20-30</option>
+            <option value="2">30-40</option>
+            <option value="3">40-50</option>
+            <option value="4">Over 50</option>
+          </select>
+        </div>
+        <div class="form-box" data-errormsg="">
+          <label for="input-alive">Alive?</label>
+          <input
+            type="checkbox"
+            id="input-alive"
+            value="yes"
+            tabindex="5"
+            checked
+          />
+        </div>
+        <div class="form-box">
+          <button id="button-cancel">Cancel</button>
+          <button id="button-send">Send</button>
+        </div>
+      </form>
     </div>
 
     <script src="./script.js"></script>
