@@ -1,0 +1,37 @@
+body {
+    background-color: darkblue;
+}
+
+.form-box {
+    margin: 200px 400px;
+    width: 480px;
+    padding: 40px;
+    background-color: white;
+}
+
+.form-box h1 {
+    margin: 20px 40px;
+    font-size: 50px;
+}
+
+.form-box input {
+    width: 80%;
+    margin-bottom: 20px;
+    padding: 10px 10px;
+}
+
+.lbl {
+    font-size: 20px;
+}
+
+#uname_lbl, #email_lbl, #password_lbl, #confirm-password_lbl, #phone-number_lbl {
+    margin-left: 10px;
+    color: red;
+}
+
+.btn {
+    background-color: darkblue;
+    padding: 10px 15px;
+    font-size: 15px;
+    color: white;
+}
